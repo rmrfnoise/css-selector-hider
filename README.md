@@ -13,11 +13,9 @@ matching those selectors are hidden automatically.
 
 For example:
 
-| URL pattern | Selector            | Effect                                |
-|:------------|:--------------------|:--------------------------------------|
-| docs.qq.com | .ad-banner          | Hide ad banners in Tencent Docs       |
-| zhihu.com   | .RecommendationList | Hide the recommendation feed on Zhihu |
-| youtube.com | #secondary          | Hide the right sidebar on YouTube     |
+- `docs.qq.com` → `.ad-banner` — Hide ad banners in Tencent Docs
+- `zhihu.com` → `.RecommendationList` — Hide the recommendation feed on Zhihu
+- `youtube.com` → `#secondary` — Hide the right sidebar on YouTube
 
 Configure once. After that, every visit to that site just works.
 
@@ -53,11 +51,9 @@ After installation, click the toolbar icon to open the settings page.
 
 There are three matching modes, chosen automatically by what you type:
 
-| You type      | Matching mode                                          | Example                             |
-|---------------|--------------------------------------------------------|-------------------------------------|
-| Contains `/`  | Substring match against the full URL                   | `zhihu.com/question/123`            |
-| Contains `:`  | Matches `host:port`, port must match exactly           | `localhost:8080`                    |
-| Anything else | Treated as a domain; matches itself and all subdomains | `qq.com` also matches `docs.qq.com` |
+- Contains `/` — substring match against the full URL. Example: `zhihu.com/question/123`
+- Contains `:` — matches `host:port`, port must match exactly. Example: `localhost:8080`
+- Anything else — treated as a domain; matches itself and all subdomains. Example: `qq.com` also matches `docs.qq.com`
 
 **Example** (rule = `qq.com`):
 

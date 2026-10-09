@@ -12,13 +12,11 @@
 
 比如：
 
-| URL 模式    | 选择器              | 影响                     |
-|:------------|:--------------------|:-------------------------|
-| docs.qq.com | .ad-banner          | 隐藏腾讯文档中的广告横幅 |
-| zhihu.com   | .RecommendationList | 隐藏知乎的推荐信息       |
-| youtube.com | #secondary          | 隐藏 YouTube 右侧边栏    |
+- `docs.qq.com` → `.ad-banner` — 隐藏腾讯文档中的广告横幅
+- `zhihu.com` → `.RecommendationList` — 隐藏知乎的推荐信息
+- `youtube.com` → `#secondary` — 隐藏 YouTube 右侧边栏
 
-用法就是：配一次，以后每次打开那个站点都生效。
+配一次，以后每次打开那个站点都生效。
 
 ---
 
@@ -52,11 +50,9 @@
 
 规则支持三种匹配方式，按填写内容自动判断：
 
-| 你填的 | 匹配方式                       | 例子                          |
-|--------|--------------------------------|-------------------------------|
-| 含 `/` | 对完整 URL 做子串匹配          | `zhihu.com/question/123`      |
-| 含 `:` | 匹配 `host:port`，端口必须相等 | `localhost:8080`              |
-| 其余   | 当域名，匹配本身及其所有子域   | `qq.com` 会匹配 `docs.qq.com` |
+- 含 `/` — 对完整 URL 做子串匹配。例如：`zhihu.com/question/123`
+- 含 `:` — 匹配 `host:port`，端口必须相等。例如：`localhost:8080`
+- 其余 — 当域名，匹配本身及其所有子域。例如：`qq.com` 会匹配 `docs.qq.com`
 
 **例子**（填 `qq.com`）：
 
