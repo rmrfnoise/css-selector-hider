@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CSS Selector Hider</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "字体圈欣意吉祥宋",
+            -apple-system, BlinkMacSystemFont,
+            "Segoe UI Variable Text", "Segoe UI",
+            "Helvetica Neue", Arial,
+            "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei",
+            sans-serif;
+            background: #fff;
+            color: #111;
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 64px 24px 80px;
+            font-size: 14px;
+            line-height: 1.6;
+            letter-spacing: -0.005em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ===== 头部：标题 + 返回 ===== */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 32px;
+            gap: 12px;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin: 0;
+            color: #111;
+        }
+
+        .header a {
+            color: #888;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color .12s;
+            flex-shrink: 0;
+        }
+
+        .header a:hover {
+            color: #111;
+        }
+
+        /* ===== URL 输入 ===== */
+        .field-row {
+            margin-bottom: 28px;
+        }
+
+        .field-row label {
+            display: block;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 6px;
+        }
+
+        .field-row input {
+            width: 100%;
+            padding: 10px 12px;
+            font: inherit;
+            font-size: 13px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background: #fff;
+            color: #111;
+            transition: border-color .12s, box-shadow .12s;
+        }
+
+        .field-row input:focus {
+            outline: none;
+            border-color: #111;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, .05);
+        }
+
+        /* ===== 表格 ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        thead th {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #999;
+            text-align: left;
+            padding: 0 8px 10px;
+            border-bottom: 1px solid #111;
+        }
+
+        tbody td {
+            padding: 0;
+            border-bottom: 1px solid #ececec;
+            vertical-align: middle;
+        }
+
+        td input {
+            width: 100%;
+            padding: 12px 8px;
+            font: inherit;
+            font-size: 13px;
+            border: none;
+            background: transparent;
+            color: #111;
+        }
+
+        td input::placeholder {
+            color: #bbb;
+        }
+
+        td input:focus {
+            outline: none;
+        }
+
+        /* 以下 .del-cell 和 button.del
+           由 detail.js 在运行时动态创建，IDEA 静态扫描不到，
+           用 noinspection 关掉“未使用的 CSS 选择器”提示。 */
+
+        /*noinspection CssUnusedSymbol*/
+        .del-cell {
+            text-align: right;
+            width: 36px;
+        }
+
+        /*noinspection CssUnusedSymbol*/
+        button.del {
+            border: none;
+            background: transparent;
+            color: #ccc;
+            font-size: 18px;
+            line-height: 1;
+            padding: 8px 8px;
+            cursor: pointer;
+            transition: color .12s;
+        }
+
+        /*noinspection CssUnusedSymbol*/
+        button.del:hover {
+            color: #e5484d;
+        }
+
+        .empty {
+            color: #999;
+            font-size: 13px;
+            padding: 28px 8px;
+            border-bottom: 1px solid #ececec;
+        }
+
+        /* ===== 底部：主操作 + 语言切换 ===== */
+        .actions {
+            margin-top: 28px;
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+        }
+
+        button.primary, button.danger {
+            padding: 10px 16px;
+            cursor: pointer;
+            border-radius: 6px;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background .12s, border-color .12s, color .12s;
+        }
+
+        button.primary {
+            border: 1px solid #e0e0e0;
+            background: #fff;
+            color: #111;
+        }
+
+        button.primary:hover {
+            border-color: #111;
+        }
+
+        button.danger {
+            border: 1px solid #e0e0e0;
+            background: #fff;
+            color: #e5484d;
+        }
+
+        button.danger:hover {
+            border-color: #e5484d;
+            background: #fff5f5;
+        }
+
+        /* 底部第二行：语言切换 */
+        .page-footer {
+            margin-top: 48px;
+            padding-top: 20px;
+            border-top: 1px solid #ececec;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .link-btn {
+            border: none;
+            background: transparent;
+            padding: 0;
+            color: #888;
+            font: inherit;
+            font-size: 13px;
+            cursor: pointer;
+            transition: color .12s;
+        }
+
+        .link-btn:hover {
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1 data-i18n="detail_title">Edit Rule</h1>
+    <a href="options.html" data-i18n="detail_back">← Back</a>
+</div>
+
+<div class="field-row">
+    <label for="match-input" data-i18n="detail_url_label">URL contains</label>
+    <input id="match-input" data-i18n-placeholder="detail_url_placeholder"
+           placeholder="e.g. docs.qq.com">
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th style="width: 55%" data-i18n="detail_th_selector">Selector</th>
+        <th data-i18n="detail_th_note">Note</th>
+        <th style="width: 36px"></th>
+    </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+</table>
+
+<div id="empty-hint" class="empty" style="display:none;" data-i18n="detail_empty">
+    No selectors yet — click "Add row" below.
+</div>
+
+<div class="actions">
+    <button class="primary" id="add-row" data-i18n="detail_add_row">+ Add row</button>
+    <button class="danger" id="delete-rule" data-i18n="detail_delete_rule">Delete rule</button>
+</div>
+
+<div class="page-footer">
+    <button id="lang-toggle" class="link-btn">English</button>
+</div>
+
+<script src="i18n.js"></script>
+<script src="detail.js"></script>
+</body>
+</html>
