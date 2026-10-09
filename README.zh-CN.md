@@ -12,11 +12,11 @@
 
 比如：
 
-| URL 模式      | 选择器                | 影响                     |
-|:--------------|:----------------------|:-------------------------|
-| `docs.qq.com` | `.ad-banner`          | 隐藏腾讯文档中的广告横幅 |
-| `zhihu.com`   | `.RecommendationList` | 隐藏知乎的推荐信息       |
-| `youtube.com` | `#secondary`          | 隐藏 YouTube 右侧边栏    |
+| URL 模式    | 选择器              | 影响                     |
+|:------------|:--------------------|:-------------------------|
+| docs.qq.com | .ad-banner          | 隐藏腾讯文档中的广告横幅 |
+| zhihu.com   | .RecommendationList | 隐藏知乎的推荐信息       |
+| youtube.com | #secondary          | 隐藏 YouTube 右侧边栏    |
 
 用法就是：配一次，以后每次打开那个站点都生效。
 

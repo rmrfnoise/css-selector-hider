@@ -13,11 +13,11 @@ matching those selectors are hidden automatically.
 
 For example:
 
-| URL pattern   | Selector              | Effect                                |
-|:--------------|:----------------------|:--------------------------------------|
-| `docs.qq.com` | `.ad-banner`          | Hide ad banners in Tencent Docs       |
-| `zhihu.com`   | `.RecommendationList` | Hide the recommendation feed on Zhihu |
-| `youtube.com` | `#secondary`          | Hide the right sidebar on YouTube     |
+| URL pattern | Selector            | Effect                                |
+|:------------|:--------------------|:--------------------------------------|
+| docs.qq.com | .ad-banner          | Hide ad banners in Tencent Docs       |
+| zhihu.com   | .RecommendationList | Hide the recommendation feed on Zhihu |
+| youtube.com | #secondary          | Hide the right sidebar on YouTube     |
 
 Configure once. After that, every visit to that site just works.
 
