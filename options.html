@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSS Selector Hider</title>
+    <link rel="stylesheet" href="ui.css">
+</head>
+<body>
+
+<div class="sheet">
+    <header class="cover">
+        <span class="mark">Selector Hider</span>
+        <div class="cover-right">
+            <span class="stat" id="meta"></span>
+        </div>
+    </header>
+
+    <main class="page">
+        <form class="composer" id="add-form">
+            <label class="sr-only" for="new-match">Name of the site</label>
+            <input id="new-match" type="text" autocomplete="off" spellcheck="false" required>
+            <button type="submit">Write</button>
+        </form>
+
+        <ul class="names" id="list"></ul>
+
+        <p class="empty" id="empty-hint" hidden>Nothing written yet — name a site above.</p>
+
+        <footer class="foot">
+            <button class="link-btn" id="undo-btn" type="button" style="display:none;">Undo import</button>
+            <button class="link-btn" id="export-btn" type="button">Export</button>
+            <button class="link-btn" id="import-btn" type="button">Import</button>
+            <input type="file" id="import-file" accept=".json,application/json" hidden>
+        </footer>
+    </main>
+</div>
+
+<script src="storage.js"></script>
+<script src="ui.js"></script>
+<script src="options.js"></script>
+</body>
+</html>

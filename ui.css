@@ -1,0 +1,630 @@
+/* ============================================================
+   CSS Selector Hider — shared styles
+   The notebook: bone paper bound under a black cover, written in ink,
+   struck out in red.
+   ============================================================ */
+
+@font-face {
+    font-family: "EB Garamond";
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: block;
+    src: url("fonts/ebgaramond.woff2") format("woff2");
+}
+
+:root {
+    --desk: #08080a;
+    --paper: #ece7dc;
+
+    --ink: #15140f;
+    --ink-2: #5b554a;
+    --ink-3: #8a8275;
+
+    --red: #a1121a;
+    --red-bright: #d8342a;
+    --rule: #d3cbb9;
+    --rule-strong: #a99f8c;
+
+    --face: "EB Garamond", Garamond, Georgia, serif;
+
+    --ease: cubic-bezier(.25, .8, .3, 1);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    background: var(--desk);
+    color: var(--ink);
+    font-family: var(--face);
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: 0.002em;
+    -webkit-text-size-adjust: 100%;
+}
+
+::selection {
+    background: rgba(161, 18, 26, .18);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ============================================================
+   The sheet
+   ============================================================ */
+.sheet {
+    max-width: 700px;
+    margin: 44px auto 96px;
+    background: var(--paper);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, .06),
+        0 30px 70px rgba(0, 0, 0, .65);
+}
+
+/* Black cover edge above the page */
+.cover {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 15px 30px 14px;
+    background: #0b0b0c;
+    border-bottom: 3px solid var(--red);
+}
+
+.mark {
+    font-family: var(--face);
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: #f2ede2;
+    text-decoration: none;
+}
+
+.cover-right {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+}
+
+.stat {
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8b8579;
+    white-space: nowrap;
+}
+
+.stat b {
+    font-weight: 400;
+    color: var(--red-bright);
+}
+
+.cover-link {
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8b8579;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color .14s var(--ease);
+}
+
+.cover-link:hover {
+    color: #f2ede2;
+}
+
+/* ============================================================
+   Page body
+   ============================================================ */
+.page {
+    padding: 24px 30px 26px;
+}
+
+/* Write a name */
+.composer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1.5px solid var(--ink);
+    transition: border-color .16s var(--ease);
+}
+
+/* The single rule under the row is the only line: the input has none of its own. */
+.composer:focus-within {
+    border-bottom-color: var(--red);
+}
+
+.composer input {
+    width: 100%;
+    padding: 6px 2px;
+    font-family: var(--face);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    caret-color: var(--red);
+}
+
+.composer input:focus {
+    outline: none;
+}
+
+.composer button {
+    padding: 8px 16px;
+    font-family: var(--face);
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    cursor: pointer;
+    transition: background-color .16s var(--ease), border-color .16s var(--ease);
+}
+
+.composer button:hover {
+    background: var(--red);
+    border-color: var(--red);
+}
+
+.composer button:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 2px;
+}
+
+/* ============================================================
+   Names
+   ============================================================ */
+.names {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr) 22px;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 0 12px;
+    border-bottom: 1px solid var(--rule);
+}
+
+/* The dot: filled = in force, hollow = struck */
+.dot-btn {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+.dot-btn::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    transition: background-color .2s var(--ease), transform .2s var(--ease);
+}
+
+.row.is-off .dot-btn::before {
+    background: transparent;
+    border: 1.5px solid var(--red);
+    transform: scale(.82);
+}
+
+.dot-btn:hover::before {
+    transform: scale(1.15);
+}
+
+.dot-btn:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 3px;
+}
+
+.entry {
+    min-width: 0;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.name {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    font-size: 17px;
+    letter-spacing: 0.004em;
+    color: var(--ink);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+}
+
+/* The strike: a pen line drawn across the name */
+.name::after {
+    content: "";
+    position: absolute;
+    left: -3px;
+    right: -3px;
+    top: 52%;
+    height: 1.5px;
+    background: var(--red);
+    transform: scaleX(0) rotate(-0.7deg);
+    transform-origin: left center;
+    transition: transform .26s var(--ease);
+    pointer-events: none;
+}
+
+.row.is-off .name {
+    color: var(--ink-2);
+}
+
+.row.is-off .name::after {
+    transform: scaleX(1) rotate(-0.7deg);
+}
+
+.entry:hover .name {
+    color: var(--red);
+}
+
+.meta {
+    display: block;
+    margin-top: 1px;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+.row-del {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--ink-3);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .14s var(--ease), color .14s var(--ease);
+}
+
+.row:hover .row-del,
+.row:focus-within .row-del {
+    opacity: 1;
+}
+
+.row-del:hover {
+    color: var(--red);
+}
+
+.row-del:focus-visible {
+    opacity: 1;
+    outline: 2px solid var(--red);
+    outline-offset: 3px;
+}
+
+/* ============================================================
+   Empty / footer
+   ============================================================ */
+.empty {
+    margin: 0;
+    padding: 26px 0 22px;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-2);
+    border-bottom: 1px solid var(--rule);
+}
+
+.foot {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 22px;
+    padding-top: 18px;
+}
+
+.link-btn {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: var(--face);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    cursor: pointer;
+    transition: color .14s var(--ease);
+}
+
+.link-btn:hover {
+    color: var(--red);
+}
+
+.link-btn:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 3px;
+}
+
+/* ============================================================
+   One name (detail)
+   ============================================================ */
+.name-head {
+    padding-bottom: 16px;
+    border-bottom: 1.5px solid var(--ink);
+}
+
+.name-head .field-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 2px;
+}
+
+.field-label label {
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+.chip {
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--red);
+}
+
+.pattern-input {
+    width: 100%;
+    padding: 2px 0;
+    font-family: var(--face);
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+}
+
+.pattern-input:focus {
+    outline: none;
+    color: var(--red);
+}
+
+.sel-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.sel-table th {
+    padding: 14px 0 6px;
+    font-size: 10.5px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    text-align: left;
+    border-bottom: 1px solid var(--rule-strong);
+}
+
+.sel-table th:last-child {
+    width: 34px;
+    padding: 0;
+}
+
+.sel-table td {
+    padding: 0;
+    border-bottom: 1px solid var(--rule);
+}
+
+.sel-table td.del-cell {
+    width: 34px;
+}
+
+.sel-table input[type="text"] {
+    width: 100%;
+    padding: 11px 0;
+    font-family: var(--face);
+    font-size: 15.5px;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    transition: color .14s var(--ease);
+}
+
+.sel-table td.note input {
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-2);
+}
+
+.sel-table input:focus {
+    outline: none;
+    color: var(--red);
+    box-shadow: inset 0 -1.5px 0 var(--red);
+}
+
+.sel-table tr:hover .row-del,
+.sel-table tr:focus-within .row-del {
+    opacity: 1;
+}
+
+.add-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    width: 100%;
+    padding: 13px 0;
+    border: 0;
+    border-bottom: 1px solid var(--rule);
+    background: none;
+    font-family: var(--face);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-2);
+    text-align: left;
+    cursor: pointer;
+    transition: color .14s var(--ease);
+}
+
+.add-row:hover {
+    color: var(--red);
+}
+
+.add-row:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 2px;
+}
+
+.empty-note {
+    margin: 0;
+    padding: 16px 0;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-2);
+    border-bottom: 1px solid var(--rule);
+}
+
+/* ============================================================
+   Destroy
+   ============================================================ */
+.destroy {
+    margin-top: 40px;
+    padding-top: 14px;
+    border-top: 3px double var(--red);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.destroy p {
+    margin: 0;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-2);
+}
+
+.danger-btn {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: var(--face);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--red);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color .14s var(--ease);
+}
+
+.danger-btn:hover {
+    color: var(--red-bright);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.danger-btn:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 3px;
+}
+
+.notice {
+    padding: 30px 0;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink-2);
+}
+
+.notice a {
+    color: var(--red);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* ============================================================
+   Narrow
+   ============================================================ */
+@media (max-width: 620px) {
+    .sheet {
+        margin: 0 0 0;
+        box-shadow: none;
+    }
+
+    .cover {
+        padding: 13px 18px 12px;
+    }
+
+    .mark {
+        font-size: 11px;
+        letter-spacing: 0.26em;
+    }
+
+    .page {
+        padding: 20px 18px 22px;
+    }
+
+    .composer {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .composer button {
+        justify-self: start;
+    }
+
+    .sel-table th:nth-child(2),
+    .sel-table td.note {
+        display: none;
+    }
+
+    .row-del {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSS Selector Hider</title>
+    <link rel="stylesheet" href="ui.css">
+</head>
+<body>
+
+<div class="sheet">
+    <header class="cover">
+        <a class="mark" href="options.html">Selector Hider</a>
+        <div class="cover-right">
+            <a class="cover-link" href="options.html">All names</a>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="name-head">
+            <div class="field-label">
+                <label for="match-input">Name</label>
+                <span class="chip" id="match-mode"></span>
+            </div>
+            <input id="match-input" class="pattern-input" type="text" autocomplete="off" spellcheck="false">
+        </section>
+
+        <table class="sel-table">
+            <thead>
+            <tr>
+                <th>Selector</th>
+                <th>Note · optional</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+
+        <p class="empty-note" id="empty-hint" hidden>No selectors yet — this name hides nothing.</p>
+
+        <button class="add-row" id="add-row" type="button">
+            <span>Add selector</span>
+        </button>
+
+        <div class="destroy">
+            <p>Striking this name leaves every page untouched.</p>
+            <button class="danger-btn" id="delete-rule" type="button">Strike this name</button>
+        </div>
+    </main>
+</div>
+
+<script src="storage.js"></script>
+<script src="ui.js"></script>
+<script src="detail.js"></script>
+</body>
+</html>

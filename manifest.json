@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "CSS Selector Hider",
+  "version": "1.0.0",
+  "description": "Hide page elements on any site with custom CSS selectors.",
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "CSS Selector Hider"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html"
+}
